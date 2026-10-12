@@ -50,12 +50,12 @@ class diceGameState extends State<diceGame>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Your Total Is $total", style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
-            SizedBox(height: 1500),
+            SizedBox(height: 150),
       
             AnimatedOpacity(
               opacity: _showImage ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 30),
-              child: Image.asset(
+              child: Image.asset( 
                 'assets/images/hanannah-happie.gif',
                 width: 300,
                 height: 300,
