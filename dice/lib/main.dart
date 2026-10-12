@@ -1,154 +1,121 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-void main() {
-  runApp(myApp());
+
+void main()
+{
+  runApp(dice());
 }
 
-class myApp extends StatelessWidget {
+class dice extends StatelessWidget
+{
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "playDice",
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green, brightness: Brightness.dark)
-        // colorScheme: ColorScheme(
-          // brightness: Brightness.dark,
-          // primary: Colors.red,
-          // onPrimary: Colors.white,
-          // secondary: secondary,
-          // onSecondary: onSecondary,
-          // error: error,
-          // onError: onError,
-          // surface: surface,
-          // onSurface: onSurface,
-        ),
-      home: playDice(),
+  Widget build(BuildContext c)
+  {
+    return MaterialApp
+    (
+      title: "Dice Game",
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 185, 171, 150), 
+      brightness: Brightness.dark)),
+      home: diceGame(),
     );
   }
 }
 
-class playDice extends StatefulWidget{
+class diceGame extends StatefulWidget
+{
   @override
-  State<playDice> createState() => playDiceState();
+  State<diceGame> createState() => diceGameState();
 }
 
-class playDiceState extends State<playDice>{
-  int value_1 = 1 ;
-  int value_2 = 1 ;
-  int total =2 ;
+class diceGameState extends State<diceGame>
+{
+  int numberDieFaces = 6;
+  int defaultDiceValue = 1;
+  late int winningValue;
 
-  void reset(){
+  late int dice_1 = defaultDiceValue;
+  late int dice_2 = defaultDiceValue;
+  late int total = dice_1 + dice_2;
 
-    setState(
-        (){
-          value_1 = 1 ;
-          value_2 =1 ;
-          total =2 ;
-        }
-    );
-
-
-  }
-
-  void roll(){
-
-    setState(() {
-      value_1 = Random().nextInt(6)+1 ;
-      value_2 = Random().nextInt(6)+1 ;
-      total = value_1 + value_2 ;
-    });
-
-  }
+  bool _showImage = false;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('hello world'), backgroundColor:Theme.of(context).colorScheme.primary),
+  Widget build(BuildContext c)
+  {
+    return Scaffold
+    (
+      appBar: AppBar(title: Text("Roll the Dice!"), backgroundColor: Theme.of(c).colorScheme.primary),
       body: Center(
-        child:
-        Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text("Your Total Is $total", style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
+            SizedBox(height: 1500),
+      
+            AnimatedOpacity(
+              opacity: _showImage ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 30),
+              child: Image.asset(
+                'assets/images/hanannah-happie.gif',
+                width: 300,
+                height: 300,
+                fit: BoxFit.cover,
+              ),
+            ),
+            
+            SizedBox(height: 100),
 
-            Text("total is $total"),
-            SizedBox(height: 50,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text("$value_1"),
-                SizedBox(width: 10,),
-                Text("$value_2")
-              ],
+                Text("$dice_1"),
+                SizedBox(width: 20,),
+                Text("$dice_2")
+              ]
             ),
-            SizedBox(height: 20,),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(child: ElevatedButton(onPressed: roll, child: Text("roll"))) ,
-                  SizedBox(width:20),
-                  Expanded(child: ElevatedButton(onPressed: reset , child: Text("reset")))
-                ]),
-          ],
-        )
 
+            SizedBox(height: 30,),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: ElevatedButton(onPressed: roll, child: Text("Roll"))) ,
+                SizedBox(width:20),
+                Expanded(child: ElevatedButton(onPressed: reset , child: Text("Reset")))
+              ]
+            )
+          ]
+        )
       )
     );
   }
 
-}
+  void reset()
+  {
+    setState(()
+    {
+      dice_1 = defaultDiceValue;
+      dice_2 = defaultDiceValue;
+      total = 2;
+      _showImage = false;
+    });
+  }
 
-// class playDice extends StatelessWidget {
-//
-//   int value_1 = 1 ;
-//   int value_2 = 1 ;
-//   int total =2 ;
-//
-//   void reset(){
-//     value_1 = 1 ;
-//     value_2 =1 ;
-//     total =2 ;
-//     print("we are in reset");
-//   }
-//
-//   void roll(){
-//     value_1 = Random().nextInt(6)+1 ;
-//     value_2 = Random().nextInt(6)+1 ;
-//     total = value_1 + value_2 ;
-//     print("we are in roll");
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('hello world'), backgroundColor:Theme.of(context).colorScheme.primary),
-//       body: Center(
-//         child:
-//         Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Text("total is $total"),
-//             SizedBox(height: 50,),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: [
-//                 Text("$value_1"),
-//                 SizedBox(width: 10,),
-//                 Text("$value_2")
-//               ],
-//             ),
-//             SizedBox(height: 20,),
-//             Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: [
-//                   Expanded(child: ElevatedButton(onPressed: roll, child: Text("roll"))) ,
-//                   SizedBox(width:20),
-//                   Expanded(child: ElevatedButton(onPressed: reset , child: Text("reset")))
-//                 ]),
-//           ],
-//         )
-//
-//       )
-//     );
-//   }
-// }
+  void roll()
+  {
+    setState(()
+    {
+      _showImage = false;
+
+      winningValue = Random().nextInt((numberDieFaces - 1) * 2) + 2;
+      dice_1 = Random().nextInt(numberDieFaces) + 1;
+      dice_2 = Random().nextInt(numberDieFaces) + 1;
+      total = dice_1 + dice_2;
+      
+      if(total == winningValue)
+      {
+        _showImage = true;
+      }
+    });
+  }
+}
