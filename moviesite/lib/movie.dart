@@ -3,7 +3,7 @@ class Movie
   final String title;
   final String genre;
   final int releaseYear;
-  final int rating;
+  final double rating;
   final String posterImage;
 
   const Movie

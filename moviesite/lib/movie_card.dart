@@ -13,13 +13,29 @@ class MovieCard extends StatelessWidget
     return Container
     (
       clipBehavior: Clip.antiAlias,
+      
       margin: EdgeInsets.all(10),
       width: 300,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        //color: Theme.of(context).colorScheme.surface,
+        image: DecorationImage(
+          image: AssetImage(movie.posterImage),
+          fit: BoxFit.cover,
+        ),
         boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4)],
         borderRadius: BorderRadius.circular(20),
       ),
+      
+      child: AspectRatio(
+        aspectRatio: 2 / 3,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            
+
+          ],
+        ),
+      )
     );
   }
 }
