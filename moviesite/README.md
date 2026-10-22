@@ -1,17 +1,9 @@
-# moviesite
+## List View
+<img width="1919" height="948" alt="image" src="https://github.com/user-attachments/assets/42f430f8-4c90-4855-8733-49b2240030e5" />
 
-A new Flutter project.
+## Grid View
+<img width="1919" height="949" alt="image" src="https://github.com/user-attachments/assets/2e496066-ddfa-4763-8164-aec2cb48f186" />
 
-## Getting Started
+## Search
+<img width="1919" height="925" alt="image" src="https://github.com/user-attachments/assets/a056d455-99c9-48ac-96ea-31d758dd1b0b" />
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
