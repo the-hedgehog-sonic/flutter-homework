@@ -16,7 +16,7 @@ class Movie
   });
 }
 
-List<Movie> movies = [
+List<Movie> movies = const [
   Movie(
     title: 'Sonic the Hedgehog',
     genre: 'action-adventure',
@@ -62,7 +62,7 @@ List<Movie> movies = [
     genre: 'adventure',
     releaseYear: 2004,
     rating:3,
-    posterImage: 'assets/images/mulan2.jpg'
+    posterImage: 'assets/images/mulan2.jpeg'
   ),
 
   Movie(
