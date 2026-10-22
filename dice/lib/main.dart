@@ -51,7 +51,7 @@ class diceGameState extends State<diceGame>
           children: [
             Text("Your Total Is $total", style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 150),
-      
+
             AnimatedOpacity(
               opacity: _showImage ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 30),
