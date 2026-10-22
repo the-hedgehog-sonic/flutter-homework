@@ -6,7 +6,7 @@ void main()
   runApp(dice());
 }
 
-class dice extends StatelessWidget
+class dice extends StatelessWidget 
 {
   @override
   Widget build(BuildContext c)
