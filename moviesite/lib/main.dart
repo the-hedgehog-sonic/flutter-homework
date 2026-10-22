@@ -1,4 +1,87 @@
 import 'package:flutter/material.dart';
+import 'homepage.dart';
+
+void main()
+{
+  runApp(const MyApp());
+}
+
+
+//my app returns the root widget (fills the whole screen) which is a material app in our case.
+class MyApp extends StatelessWidget
+{
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context)
+  {
+    const String appTitle = 'Sonic';          //why is this a local vvariable and not an attribute of the class?
+    return MaterialApp
+    (
+      title: appTitle,
+      home: Scaffold
+      (
+        appBar: AppBar(title: const Text(appTitle)),
+        body: Row
+        (
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+              Recipe('Turkish Baklava', 'imagine a description here'),
+              Image.asset('assets/images/baklava.jpg'),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+
+class Recipe extends StatelessWidget
+{
+  final String recipeName;
+  final String description;
+
+  const Recipe(this.recipeName, this.description, {super.key});
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Column
+    (
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container
+        (
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: Colors.blueGrey,
+            ),
+          child: Text(recipeName),
+        ),
+        
+        Text(description),
+        Row
+        (
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.star, color: Colors.green[500]),
+            Icon(Icons.star, color: Colors.green[500]),
+            Icon(Icons.star, color: Colors.green[500]),
+            const Icon(Icons.star, color: Colors.black),
+            const Icon(Icons.star, color: Colors.black),
+          ],
+          
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
+
+/*import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -120,3 +203,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
