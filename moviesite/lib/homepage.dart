@@ -2,36 +2,27 @@ import 'package:flutter/material.dart';
 import 'movie.dart';
 import 'movie_card.dart';
 
-//should return our scaffold widget
-class HomePage extends StatefulWidget
-{
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-
-class _HomePageState extends State<HomePage>
-{
+class _HomePageState extends State<HomePage> {
   bool isGrid = false;
   String searchText = '';
-  final List<Movie> movieList = movies;
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     final List<Movie> searchedMovies = [];
-    for (final m in movies) 
-    {
-      if (m.title.toLowerCase().contains(searchText.toLowerCase())) 
-      {
+    for (final m in movies) {
+      if (m.title.toLowerCase().contains(searchText.toLowerCase())) {
         searchedMovies.add(m);
       }
     }
 
-    return Scaffold
-    (
+    return Scaffold(
       appBar: AppBar(
         title: const Text("EgyBest"),
         actions: [
@@ -45,7 +36,6 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
-      
       body: Column(
         children: [
           Padding(
@@ -63,25 +53,34 @@ class _HomePageState extends State<HomePage>
               },
             ),
           ),
-
+          
           Expanded(
-            child: isGrid ? GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5, childAspectRatio: 0.55,), 
-              itemCount: searchedMovies.length,
-              itemBuilder: (context, index){
-                return MovieCard(searchedMovies[index]);
-              },
-            ) 
-
-            : ListView.builder(
-              itemCount: searchedMovies.length,
-              itemBuilder: (context, index){
-                return MovieCard(searchedMovies[index]);
-              }
-            )
+            child: isGrid
+                ? GridView.builder(
+                    gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount:5,
+                        childAspectRatio: 0.55,),
+                    itemCount: searchedMovies.length,
+                    itemBuilder: (context, index) {
+                      return MovieCard(searchedMovies[index]);
+                    },
+                  )
+                : ListView.builder(
+                    itemCount: searchedMovies.length,
+                    itemBuilder: (context, index) {
+                      return Center(
+                        child: SizedBox(
+                          width: 500,
+                          height: 800,
+                          child: MovieCard(searchedMovies[index]),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
-      )
+      ),
     );
   }
 }

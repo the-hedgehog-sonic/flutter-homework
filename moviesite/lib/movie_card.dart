@@ -23,8 +23,7 @@ class MovieCard extends StatelessWidget
       
       child: Column(
         children: [
-          AspectRatio(
-            aspectRatio: 2 / 3,
+          Expanded(
             child: Stack(
               fit: StackFit.expand,
               children: [
