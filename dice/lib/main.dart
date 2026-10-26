@@ -8,6 +8,8 @@ void main()
 
 class dice extends StatelessWidget 
 {
+  const dice({super.key});
+
   @override
   Widget build(BuildContext c)
   {
@@ -23,6 +25,8 @@ class dice extends StatelessWidget
 
 class diceGame extends StatefulWidget
 {
+  const diceGame({super.key});
+
   @override
   State<diceGame> createState() => diceGameState();
 }
