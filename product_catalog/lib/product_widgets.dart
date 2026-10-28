@@ -23,12 +23,18 @@ import 'package:flutter/material.dart';
 
 class ProductsListView extends StatelessWidget {
   final List<Map<String, dynamic>> products;
-  final void Function() onFavoritePressed;
+  final void Function(int index) onFavoritePressed;
+  final Set<int> favorites;
+  final void Function(int index) onCartPressed;
+  final Set<int> cart;
   final void Function(int index) onProductTap;
 
-  ProductsListView({
+  const ProductsListView({super.key, 
     required this.products,
     required this.onFavoritePressed,
+    required this.favorites,
+    required this.onCartPressed,
+    required this.cart,
     required this.onProductTap,
   });
 
@@ -40,7 +46,14 @@ class ProductsListView extends StatelessWidget {
         return ProductTile(
           name: products[index]["name"],
           price: products[index]["price"],
-          onFavoritePressed: onFavoritePressed,
+          onFavoritePressed: () {
+            onFavoritePressed(index);
+          },
+          isFavorite: favorites.contains(index),
+          onCartPressed: (){
+            onCartPressed(index);
+          },
+          isInCart: cart.contains(index),
           onTap: () {
             onProductTap(index);
           },
@@ -52,12 +65,18 @@ class ProductsListView extends StatelessWidget {
 
 class ProductsGridView extends StatelessWidget {
   final List<Map<String, dynamic>> products;
-  final void Function() onFavoritePressed;
+  final void Function(int index) onFavoritePressed;
+  final Set<int> favorites;
+  final void Function(int index) onCartPressed;
+  final Set<int> cart;
   final void Function(int index) onProductTap;
 
-  ProductsGridView({
+  const ProductsGridView({super.key, 
     required this.products,
     required this.onFavoritePressed,
+    required this.favorites,
+    required this.onCartPressed,
+    required this.cart,
     required this.onProductTap,
   });
 
@@ -73,7 +92,14 @@ class ProductsGridView extends StatelessWidget {
         return ProductTile(
           name: products[index]["name"],
           price: products[index]["price"],
-          onFavoritePressed: onFavoritePressed,
+          onFavoritePressed: () {
+            onFavoritePressed(index);
+          },
+          isFavorite: favorites.contains(index),
+          onCartPressed: (){
+            onCartPressed(index);
+          },
+          isInCart: cart.contains(index),
           onTap: () {
             onProductTap(index);
           },
@@ -83,16 +109,23 @@ class ProductsGridView extends StatelessWidget {
   }
 }
 
-class ProductTile extends StatelessWidget {
+class ProductTile extends StatelessWidget 
+{
+  final bool isFavorite;
+  final bool isInCart;
   final String name;
   final int price;
   final void Function() onFavoritePressed;
+  final void Function() onCartPressed;
   final void Function() onTap;
 
-  ProductTile({
+  const ProductTile({super.key,
     required this.name,
     required this.price,
+    required this.isFavorite,
+    required this.isInCart,
     required this.onFavoritePressed,
+    required this.onCartPressed,
     required this.onTap,
   });
 
@@ -101,14 +134,26 @@ class ProductTile extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(name),
-        subtitle: Text("\$$price"),
-        trailing: IconButton(
-          icon: Icon(Icons.favorite),
-          color: Colors.red,
-          onPressed: onFavoritePressed,
+        subtitle: Text("EGP ${price}"),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(isInCart ? Icons.shopping_cart : Icons.shopping_cart_outlined),
+              color: isInCart ? Colors.green : null,
+              onPressed: onCartPressed,
+            ),
+
+            IconButton(
+              icon: Icon(isFavorite? Icons.favorite : Icons.favorite_border),
+              color: isFavorite? Colors.red : null,
+              onPressed: onFavoritePressed,
+            ),
+          ],
         ),
         onTap: onTap,
       ),
     );
   }
 }
+  

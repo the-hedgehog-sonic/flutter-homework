@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
 
 class Login extends StatefulWidget
 {
@@ -22,7 +22,9 @@ class _LoginState extends State<Login>
   {
     final typed = _controller.text.trim();
     userName = typed.isEmpty ? 'Guest' : typed;
-    Navigator.pushNamed(context, '/products', arguments: userName);
+
+    //Navigator.pushNamed(context, '/products', arguments: userName);
+    context.goNamed('products', queryParameters: {'user': userName});
   }
 
   @override
@@ -51,8 +53,8 @@ class _LoginState extends State<Login>
           child: Container(
               margin: EdgeInsets.all(20),
               padding: EdgeInsets.all(20),
-              width: 400,
-              height: 500,
+              width: 450,
+              height: 400,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surfaceContainer,
                 borderRadius: BorderRadius.circular(15),
